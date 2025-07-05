@@ -1,7 +1,7 @@
 my_arabic_german_keyboard
 keyboard.html
-<html lang="ar" dir="rtl">
-<head>
+<!DOCTYPE html>
+<html lang="ar"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة مفاتيح ألمانية-عربية</title>
@@ -35,6 +35,7 @@ keyboard.html
             display: flex;
             gap: 8px;
             justify-content: center;
+            /* لم نعد نستخدم direction: rtl; هنا، لذا الصفوف ستكون LTR افتراضياً */
         }
 
         .key {
@@ -57,7 +58,7 @@ keyboard.html
             min-width: 40px; /* Ensure a minimum width for small screens */
             padding: 5px;
             box-sizing: border-box;
-            text-align: center;
+            /* text-align: center; هذا يمكن أن يتعارض مع محاذاة alt-char و main-char */
         }
 
         .key:hover {
@@ -72,6 +73,10 @@ keyboard.html
         .key .main-char {
             font-size: 1.4em;
             color: #222;
+            direction: rtl; /* لجعل الحرف الرئيسي (العربي) من اليمين لليسار */
+            text-align: right; /* لمحاذاة الحرف الرئيسي لليمين داخل الزر */
+            width: 100%; /* للتأكد من أن النص يأخذ العرض الكامل للمفتاح */
+            box-sizing: border-box; /* لضمان عدم وجود مشاكل في العرض */
         }
 
         .key .alt-char {
@@ -80,15 +85,19 @@ keyboard.html
             position: absolute;
             top: 5px;
             left: 5px;
-            direction: ltr; /* Ensure German characters read left-to-right */
+            direction: ltr; /* لضمان أن الحرف الألماني يُقرأ من اليسار لليمين */
+            text-align: left; /* لمحاذاة الحرف الألماني لليسار */
+            width: 100%; /* للتأكد من أن النص يأخذ العرض الكامل للمفتاح */
+            box-sizing: border-box;
         }
         
         .key .special-key {
             font-size: 0.9em;
             color: #444;
+            /* لا داعي لـ direction هنا، سيتخذ الافتراضي (LTR) */
         }
 
-        /* Specific key widths */
+        /* Specific key widths - no change needed here */
         .key.tab, .key.backspace {
             flex-basis: 5%; /* Adjust as needed */
             min-width: 70px;
@@ -147,8 +156,7 @@ keyboard.html
     </style>
 </head>
 <body>
-    <h1>لوحة مفاتيح ألمانية-عربية (افتراضية)</h1>
-    <div class="keyboard-container">
+    <h1 dir="rtl">لوحة مفاتيح ألمانية-عربية (افتراضية)</h1> <div class="keyboard-container">
         <div class="keyboard-row">
             <div class="key wide"><span class="main-char">ء</span><span class="alt-char">^</span></div>
             <div class="key"><span class="main-char">١</span><span class="alt-char">1</span></div>
